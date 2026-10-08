@@ -9,9 +9,13 @@ export const App: React.FC = () => {
   const [goods, setGoods] = useState<Good[]>([]);
 
   async function handleClickGoods(getGoods: () => Promise<Good[]>) {
-    const visibleGoods: Good[] = await getGoods();
+    try {
+      const visibleGoods: Good[] = await getGoods();
 
-    setGoods(visibleGoods);
+      setGoods(visibleGoods);
+    } catch (error) {
+      throw error;
+    }
   }
 
   return (
